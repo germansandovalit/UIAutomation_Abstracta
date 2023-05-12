@@ -5,11 +5,11 @@ export default class Item {
     }
 
     async getTitle(){
-        return this.element.$('.ui-search-item__group--title').$(".ui-search-item__title").getText()
+        return this.element.$('.ui-search-item__group--title').$('.ui-search-item__title').getText()
     }
 
     async getPrice(){
-        return this.element.$(".shops__price-second-line").$(".price-tag-text-sr-only").getText()
+        return this.element.$('.shops__price-second-line').$('.price-tag-text-sr-only').getText()
     }
 
     async getLink(){

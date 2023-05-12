@@ -7,17 +7,22 @@ class ListPage extends HomePage {
         return $('=Siguiente')
     }
 
-    get item () {
-        return $('.shops__cardStyles')
+    get items () {
+        return $$('.shops__cardStyles')
     }
 
     async goToNextPage() {
         await this.buttonNextPage.click()
     }
 
-    async extractInformation(){
-        const item$ = await this.item
-        console.log(await new Item(item$).extractInformation())
+    async extractInformationFromPage(){
+        const itemsInformations = []
+        const items$ = await this.items
+        for (const item$ of items$){
+            const itemInformation = await new Item(item$).extractInformation()
+            itemsInformations.push(itemInformation)
+        }
+        return itemsInformations
     }
 }
 
