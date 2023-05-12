@@ -17,9 +17,10 @@ export default class Item {
     }
     
     async extractInformation(){
+        const priceWithCurrency = await this.getPrice()
         return {
             title: await this.getTitle(),
-            price: await this.getPrice(),
+            price: Number(priceWithCurrency.split(' ')[0]),
             link: await this.getLink()
         }
     }
