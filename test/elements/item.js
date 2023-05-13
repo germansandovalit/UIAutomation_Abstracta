@@ -4,12 +4,16 @@ export default class Item {
         this.element = element
     }
 
-    async getTitle(){
+    async getName(){
         return this.element.$('.ui-search-item__group--title').$('.ui-search-item__title').getText()
     }
 
     async getPrice(){
-        return this.element.$('.shops__price-second-line').$('.price-tag-text-sr-only').getText()
+        const textPrice = await this.element.$('.shops__price-second-line').$('.price-tag-text-sr-only').getText()
+        const textPricePieces = textPrice.split(' ')
+        const units = textPricePieces[0]
+        let cents = textPricePieces[3] ? textPricePieces[3] : '00'
+        return `${units}.${cents}`
     }
 
     async getLink(){
@@ -17,10 +21,9 @@ export default class Item {
     }
     
     async extractInformation(){
-        const priceWithCurrency = await this.getPrice()
         return {
-            title: await this.getTitle(),
-            price: Number(priceWithCurrency.split(' ')[0]),
+            name: await this.getName(),
+            price: await this.getPrice(),
             link: await this.getLink()
         }
     }
