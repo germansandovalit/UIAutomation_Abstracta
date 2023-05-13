@@ -1,7 +1,7 @@
-import HomePage from './page.js';
+import Page from './page.js';
 import Item from '../elements/item.js'
 
-class ListPage extends HomePage {
+class ListPage extends Page {
     
     get buttonNextPage () {
         return $('=Siguiente')
