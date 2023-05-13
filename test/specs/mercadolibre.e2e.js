@@ -4,7 +4,7 @@ import FileHelper from '../helpers/file.helper.js'
 
 describe('Mercadolibre', () => {
     it('Search Camisetas and extract information', async () => {
-        let pagesInformation = []
+        let itemsInformation = []
         const pageQuantity = 3
         const searchKey = 'Camisetas'
         await HomePage.open()
@@ -12,13 +12,13 @@ describe('Mercadolibre', () => {
         await HomePage.search(searchKey)
         
         for (let i = 1; i <= pageQuantity; i++){
-            const pageInformation = await ListPage.extractInformationFromPage()
-            pagesInformation = [...pagesInformation, ...pageInformation]
+            const currentItemsInformation = await ListPage.extractInformationFromPage()
+            itemsInformation = [...itemsInformation, ...currentItemsInformation]
             if (i !== pageQuantity){
                 await ListPage.goToNextPage()
             }
         }
 
-        FileHelper.saveData(pagesInformation)
+        FileHelper.saveData(itemsInformation)
     })
 })

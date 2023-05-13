@@ -12,7 +12,7 @@ export default class Item {
         const textPrice = await this.element.$('.shops__price-second-line').$('.price-tag-text-sr-only').getText()
         const textPricePieces = textPrice.split(' ')
         const units = textPricePieces[0]
-        let cents = textPricePieces[3] ? textPricePieces[3] : '00'
+        const cents = textPricePieces[3] ? textPricePieces[3] : '00'
         return `${units}.${cents}`
     }
 
